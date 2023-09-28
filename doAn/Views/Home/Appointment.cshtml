@@ -1,0 +1,75 @@
+﻿@model ModelCommon
+<link href="~/assets/css/appoinment.css" rel="stylesheet" />
+<div class="container">
+    <div class="appointment-inner"> 
+        <div class="appointment__media">
+            <img class="media-img" src="~/assets/img/appoinment.png" />
+            <h2 class="media-title">Need an Emergency Help?</h2>
+            <p class="media-call">CALL US: <br />
+                +01 234 567 890 </p>
+        </div>
+        <div class="appointment__form-book">
+            <h2 class="form-book__title">Book an appointment</h2>
+            <p class="form-book__desc">Lorem Ipsum is simply dummy text of  printing and typesetting industry standard dummy text the with the release.
+            </p>
+            <form role="form" action="" method="POST" class="form-book__appointment">
+                <div class="form-book__appointment-inner"> 
+                    <input type="text" id="nameUser" value="@Model.UserModel[0].nameUser" placeholder="Name"/>
+                    <input type="Email" id="emailUser" value="@Model.UserModel[0].emailUser"  placeholder="Email"/>
+                    
+                    <input type="date" id="day" placeholder="Date"/>
+                    <select id="doctor">
+                        @foreach (var item in Model.DoctorModel)
+                        {
+                           <option value="@item.nameDoctor">@item.nameDoctor</option>
+                        }
+                    </select>
+                    <select id="service"> 
+                        @foreach (var item in Model.ServiceModal)
+                        {
+                                <option value="@item.nameService">@item.nameService</option>
+                        }
+                    </select>
+                </div>
+                <textarea class="form-book__textarea"  placeholder="Message..."></textarea>
+                <button class="form-book__btn" onclick="registerUser()" type="button">Book appoinment now</button>
+            </form>
+        </div>
+    </div>
+</div>
+@section SNullLayout{
+        <script>
+            function registerUser() {
+                    let obj = {
+                        nameUser: $('#nameUser').val(),
+                        emailUser:$('#emailUser').val(),
+                        daappointmentDatey: $('#day').val(),
+                        nameDoctor: $('#doctor').val(),
+                        nameService: $('#service').val()
+                    }
+
+                        console.log(obj)
+                        $.ajax({
+                                url: "/Home/BookAppointment",
+                            type: "POST",
+                            contentType: "application/json",
+                            data: JSON.stringify(obj),
+                            beforeSend: function () {
+                                    console.log(obj)
+                            },
+                            success: function (res) {
+                                if(res == 1){
+                                    confirm("Đặt lịch thành công");
+                                            window.location.href = '/Home/Index';
+                                }
+                                if(res == 2){
+                                        alert('You entered the password incorrectly!')
+                                }
+                            },
+                            error: function (error) {
+
+                            }
+                        })
+            };
+        </script>
+}

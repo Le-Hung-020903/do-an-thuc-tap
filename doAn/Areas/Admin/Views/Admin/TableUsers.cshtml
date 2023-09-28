@@ -1,0 +1,60 @@
+﻿@using doAn.Models;
+@{
+    Layout = "_Layout";
+}
+@model List<UserModel>
+<div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">Take back your smile with shine.</p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name User</th>
+                                            <th>Password User</th>
+                                            <th>Phone Number</th>
+                                            <th>email User</th>
+                                            <th>Status Job</th>
+                                            <th>IS Admin</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Name User</th>
+                                            <th>Password User</th>
+                                            <th>Phone Number</th>
+                                            <th>email User</th>
+                                            <th>Status Job</th>
+                                            <th>IS Admin</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                            @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>@item.idUser</td>
+                                                        <td>@item.nameUser</td>
+                                                        <td>@item.passwordUser</td>
+                                                        <td>@item.phoneNumber</td>
+                                                        <td>@item.emailUser</td>
+                                                        <td>@item.statusJob</td>
+                                                        <td>@item.isAdmin</td>
+                                                    </tr>
+                                                }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>

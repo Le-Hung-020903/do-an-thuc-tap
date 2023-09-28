@@ -1,0 +1,84 @@
+﻿    <link href="~/assets/css/login.css?version=@DateTime.Now.Ticks" rel="stylesheet" />
+<main id="login">
+    <div class="main-content">
+        <div class="Form-container">
+            <!--? info -->
+            <article class="form-info">
+                <h2 class="form-info__title">
+                    <span class="form-info__title--logo">JL</span>
+                    Just Log
+                </h2>
+                <p class="form-info__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias quo at
+                    expedita repellendus facilis!</p>
+                <div>
+                    <a href="#!" class="form-info__btn">Read More</a>
+                </div>
+                <div class="form-info__socials">
+                    <a href="#!" class="form-info"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#!" class="form-info"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#!" class="form-info"><i class="fa-brands fa-google"></i></a>
+                    <a href="#!" class="form-info"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <button type="submit" class="form-info__control"><i class="fa-solid fa-arrow-right"></i></button>
+            </article>
+            <!--? form -->
+            <article class="form-login">
+                <h2 class="form-login__title">
+                    Login to your account
+@*                    <span class="form-login__title--highlight">@TempData["erorMessage"]</span>*@
+                </h2>
+                <form role="form" action="/Home/Login" method="POST" class="form-login__register">
+                    <input class="form-login__input" type="text" name="nameUser" id="nameUser" placeholder="Name Address"
+                        required>
+                    <input class="form-login__input" type="password" name="passwordUser" id="passwordUser"
+                        placeholder="Password" required>
+                    <div class="form-login__option">
+                        <input type="checkbox" name="check" id="check">
+                        <label class="remember" for="check">Remember me</label>
+                        <a href="#!" class="form-login__forgot">Forgot Password</a>
+                    </div>
+                    <button type="button" class="login"  onclick="Login()">LOGIN</button>
+                    <div class="form-login__register-account">
+                        Don't have an account?
+                        <a href="~/Home/Register" class="register-account__here">Register here</a>
+                    </div>
+                </form>
+            </article>
+        </div>
+    </div>
+</main>
+<script>
+        function Login() {
+            console.log()
+            let obj = {
+                nameUser: $('#nameUser').val(),
+                passwordUser: $('#passwordUser').val(),
+            }
+            console.log(obj);
+            $.ajax({
+                url: "/Home/LoginRes",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(obj),
+                beforeSend: function () {
+                    console.log("Before");
+                    console.log(obj);
+                },
+                success: function (res) {
+                    console.log(res)
+                    if(res ==2){
+                        alert('tài khoản khoongh chính xác');
+                        window.location.href = '/Home/Login';
+                    }else{
+                        window.location.href = '/Home/Index';
+                    }
+                },
+                error: function (error) {
+                    
+                }
+            })
+        }
+
+    </script>
+
+    

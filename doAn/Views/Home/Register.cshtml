@@ -1,0 +1,99 @@
+﻿@{
+    Layout = "_Layout";
+}
+<link href="~/assets/css/register.css" rel="stylesheet" />
+<div class="container-register">
+        <div class="register-inner">
+            <div class="title">Registration</div>
+            <div class="content">
+                <form role="form"  method="POST" action="/Home/Register">
+                    <div class="user-details">
+                        <div class="input-box">
+                            <label class="details" for="fullname">Full Name</label>
+                            <input type="text" placeholder="Enter your name" id="nameUser" required>
+                        </div>
+                        <div class="input-box">
+                            <label class="details" for="username">Username</label>
+                            <input type="text" placeholder="Enter your username" id="username" required>
+                        </div>
+                        <div class="input-box">
+                            <label class="details" for="email">Email</label>
+                            <input type="text" placeholder="Enter your email" id="emailUser" required>
+                        </div>
+                        <div class="input-box">
+                            <label class="details" for="number">Phone Number</label>
+                            <input type="text" placeholder="Enter your number" id="phoneNumber" required>
+                        </div>
+                        <div class="input-box">
+                            <label class="details" for="password">Password</label>
+                            <input type="text" placeholder="Enter your password" id="passwordUser" required>
+                        </div>
+                        <div class="input-box">
+                            <label class="details" for="confirmPassword">Confirm Password</label>
+                            <input type="text" placeholder="Confirm your password" id="confirmPassword" required>
+                        </div>
+                    </div>
+                    <div class="gender-details">
+                        <input type="radio" name="gender" id="dot-1">
+                        <input type="radio" name="gender" id="dot-2">
+                        <input type="radio" name="gender" id="dot-3">
+                        <span class="gender-title">Gender</span>
+                        <div class="category">
+                            <label for="dot-1">
+                                <span class="dot one"></span>
+                                <span class="gender">Male</span>
+                            </label>
+                            <label for="dot-2">
+                                <span class="dot two"></span>
+                                <span class="gender">Female</span>
+                            </label>
+                            <label for="dot-3">
+                                <span class="dot three"></span>
+                                <span class="gender">Prefer not to say</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div onclick="registerUser()" class="button">
+                        <input type="button" value="Register">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+@section SNullLayout{
+    <script>
+        function registerUser() {
+                let obj = {
+                    nameUser: $('#nameUser').val(),
+                    emailUser:$('#emailUser').val(),
+                    phoneNumber: $('#phoneNumber').val(),
+                    passwordUser: $('#passwordUser').val(),
+                    confirmPassword: $('#confirmPassword').val()
+                }
+                    
+
+                    $.ajax({
+                        url: "/Home/RegisterUsers",
+                        type: "POST",
+                        contentType: "application/json",
+                        data: JSON.stringify(obj),
+                        beforeSend: function () {
+                                console.log(obj)
+                        },
+                        success: function (res) {
+                            if(res == 1){
+                                confirm("Tạo tài khoản thành công");
+                                    window.location.href = '/Home/Login';
+                            }
+                            if(res == 2){
+                                    alert('You entered the password incorrectly!')
+                            }
+                        },
+                        error: function (error) {
+
+                        }
+                    })
+        };
+    </script>
+}
