@@ -130,9 +130,22 @@ namespace doAn.Areas.Admin.Controllers
             return View(doctor);
         }
 
-      
-        
 
-        
+        [Area("Admin")]
+        public IActionResult ListTest()
+        {
+            var Doctors = from D in _dbConnect.DoctorEntity
+                          select new DoctorModel()
+                          {
+                              idDoctor = D.idDoctor,
+                              imgDoctor = D.imgDoctor,
+                              nameDoctor = D.nameDoctor,
+                              expertise = D.expertise,
+                              infoContact = D.infoContact,
+                          };
+            List<DoctorModel> doctor = Doctors.ToList();
+            return View(doctor);
+        }
+
     }
 }

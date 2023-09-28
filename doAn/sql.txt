@@ -1,0 +1,236 @@
+﻿USE [dentalTTTT]
+GO
+/****** Object:  Table [dbo].[lhAppointments]    Script Date: 9/29/2023 4:47:56 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhAppointments](
+	[idAppointments] [int] IDENTITY(1,1) NOT NULL,
+	[appointmentDate] [varchar](50) NULL,
+	[nameUser] [nvarchar](50) NULL,
+	[emailUser] [nvarchar](100) NULL,
+	[nameService] [nvarchar](100) NULL,
+	[nameDoctor] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idAppointments] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhDiseases]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhDiseases](
+	[idDisease] [int] IDENTITY(1,1) NOT NULL,
+	[nameDisease] [nvarchar](100) NULL,
+	[descriptionDisease] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idDisease] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhDoctor]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhDoctor](
+	[idDoctor] [int] IDENTITY(1,1) NOT NULL,
+	[imgDoctor] [text] NULL,
+	[nameDoctor] [nvarchar](100) NULL,
+	[expertise] [nvarchar](50) NULL,
+	[infoContact] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idDoctor] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhfeedback]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhfeedback](
+	[idFeedback] [int] IDENTITY(1,1) NOT NULL,
+	[idPatient] [int] NULL,
+	[content] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idFeedback] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhinvoices]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhinvoices](
+	[idInvoice] [int] IDENTITY(1,1) NOT NULL,
+	[invoiceDate] [datetime] NULL,
+	[idPatients] [int] NULL,
+	[idService] [int] NULL,
+	[total] [float] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idInvoice] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhMedicalRecords]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhMedicalRecords](
+	[idMedicalRecords] [int] IDENTITY(1,1) NOT NULL,
+	[idPatients] [int] NULL,
+	[idDisease] [int] NULL,
+	[dateMedicalRecords] [datetime] NULL,
+	[contentMedicalRecords] [nvarchar](100) NULL,
+	[prescription] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idMedicalRecords] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhnews]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhnews](
+	[idNews] [int] IDENTITY(1,1) NOT NULL,
+	[postNews] [datetime] NULL,
+	[author] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idNews] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhPatients]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhPatients](
+	[idPatients] [int] IDENTITY(1,1) NOT NULL,
+	[namePatients] [nvarchar](100) NULL,
+	[dateBrithdayPatients] [datetime] NULL,
+	[addressPatients] [nvarchar](100) NULL,
+	[phoneNumberPatients] [nvarchar](50) NULL,
+	[emailPatients] [nvarchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idPatients] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhprescription]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhprescription](
+	[idPrescription] [int] IDENTITY(1,1) NOT NULL,
+	[idPatients] [int] NULL,
+	[idDoctor] [int] NULL,
+	[prescriptionDate] [datetime] NULL,
+	[prescriptionContent] [nvarchar](100) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idPrescription] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhServices]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhServices](
+	[idService] [int] IDENTITY(1,1) NOT NULL,
+	[nameService] [nvarchar](100) NULL,
+	[descriptionServices] [nvarchar](100) NULL,
+	[price] [float] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idService] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhUser]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhUser](
+	[idUser] [int] IDENTITY(1,1) NOT NULL,
+	[nameUser] [nvarchar](50) NULL,
+	[passwordUser] [nvarchar](50) NULL,
+	[phoneNumber] [nvarchar](50) NULL,
+	[emailUser] [nvarchar](20) NULL,
+	[statusJob] [nvarchar](20) NULL,
+	[isAdmin] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idUser] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[lhxraysImages]    Script Date: 9/29/2023 4:47:57 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[lhxraysImages](
+	[idImage] [int] IDENTITY(1,1) NOT NULL,
+	[descc] [nvarchar](50) NULL,
+	[dateXray] [datetime] NULL,
+	[idPatients] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[idImage] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[lhAppointments] ON 
+
+INSERT [dbo].[lhAppointments] ([idAppointments], [appointmentDate], [nameUser], [emailUser], [nameService], [nameDoctor]) VALUES (1, NULL, N'lehung', N'123', N'Răng Hàm2', N'Dr. CR7')
+INSERT [dbo].[lhAppointments] ([idAppointments], [appointmentDate], [nameUser], [emailUser], [nameService], [nameDoctor]) VALUES (2, N'29/06/23', N'lehung', N'123', N'Răng Hàm', N'Dr. Essence Page')
+SET IDENTITY_INSERT [dbo].[lhAppointments] OFF
+GO
+SET IDENTITY_INSERT [dbo].[lhDoctor] ON 
+
+INSERT [dbo].[lhDoctor] ([idDoctor], [imgDoctor], [nameDoctor], [expertise], [infoContact]) VALUES (1, N'dentist-1.png', N'Dr. Essence Page', N'DDS, California - Linda University', N'0121215161')
+INSERT [dbo].[lhDoctor] ([idDoctor], [imgDoctor], [nameDoctor], [expertise], [infoContact]) VALUES (2, N'dentist-2.png', N'Dr. Davis', N'DDS, HN - HN University', N'42352523')
+INSERT [dbo].[lhDoctor] ([idDoctor], [imgDoctor], [nameDoctor], [expertise], [infoContact]) VALUES (3, N'dentist-3.png', N'Dr. Beem', N'DDS, HCM - HCM University', N'7272724')
+INSERT [dbo].[lhDoctor] ([idDoctor], [imgDoctor], [nameDoctor], [expertise], [infoContact]) VALUES (4, N'dentist-4.png', N'Dr. CR7', N'DDS, TH - TH University', N'2462642')
+SET IDENTITY_INSERT [dbo].[lhDoctor] OFF
+GO
+SET IDENTITY_INSERT [dbo].[lhServices] ON 
+
+INSERT [dbo].[lhServices] ([idService], [nameService], [descriptionServices], [price]) VALUES (1, N'Răng Hàm', N'Răng Hàm', 1)
+INSERT [dbo].[lhServices] ([idService], [nameService], [descriptionServices], [price]) VALUES (2, N'Răng Hàm 1', N'Răng Hàm1', 1)
+INSERT [dbo].[lhServices] ([idService], [nameService], [descriptionServices], [price]) VALUES (3, N'Răng Hàm2', N'Răng Hàm2', 1)
+SET IDENTITY_INSERT [dbo].[lhServices] OFF
+GO
+SET IDENTITY_INSERT [dbo].[lhUser] ON 
+
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (1, N'lehung', N'123', N'1', N'123', N'Custormer', 0)
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (2, N'lehung', N'123', N'12345678', N'123', N'Custormer', 0)
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (3, N'lehung', N'123', N'12345678', N'123', N'Custormer', 0)
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (4, N'lehung', N'123', N'12345678', N'123', N'Custormer', 0)
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (5, N'lehung', N'123', N'12345678', N'123', N'Custormer', 0)
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (6, N'lehung', N'123', N'12345678', N'123', N'Custormer', 0)
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (7, N'hoang', N'123', N'123', N'123', N'Custormer', 0)
+INSERT [dbo].[lhUser] ([idUser], [nameUser], [passwordUser], [phoneNumber], [emailUser], [statusJob], [isAdmin]) VALUES (8, N'Admin', N'admin', N'123', N'admin@gmail.com', N'Admin', 1)
+SET IDENTITY_INSERT [dbo].[lhUser] OFF
+GO

@@ -1,0 +1,58 @@
+﻿@using doAn.Models;
+@{
+    Layout = "_Layout";
+}
+@model List<DoctorModel>
+<div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+                    <p class="mb-4">Take back your smile with shine.</p>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Mã bác sĩ</th>
+                                            <th>Ảnh</th>
+                                            <th>tên bác sĩ</th>
+                                            <th>Chuyên môn</th>
+                                            <th>Thông tin liên lạc</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Mã bác sĩ</th>
+                                            <th>Ảnh</th>
+                                            <th>tên bác sĩ</th>
+                                            <th>Chuyên môn</th>
+                                            <th>Thông tin liên lạc</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                                                    <tr>
+                                                            <td>@item.idDoctor</td>
+                                                            <td><img src="~/assets/img/@item.imgDoctor" style="height: 70px;"/></td>
+                                                            <td>@item.nameDoctor</td>
+                                                            <td>@item.expertise</td>
+                                                            <td>@item.infoContact</td>
+                                                    </tr>
+                        }
+                                        <tr>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
